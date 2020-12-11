@@ -72,7 +72,7 @@ func (c *jobs) Get(ctx context.Context, name string, options v1.GetOptions) (res
 		Resource("jobs").
 		Name(name).
 		VersionedParams(&options, scheme.ParameterCodec).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -89,7 +89,7 @@ func (c *jobs) List(ctx context.Context, opts v1.ListOptions) (result *v1alpha1.
 		Resource("jobs").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -117,7 +117,7 @@ func (c *jobs) Create(ctx context.Context, job *v1alpha1.Job, opts v1.CreateOpti
 		Resource("jobs").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(job).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -131,7 +131,7 @@ func (c *jobs) Update(ctx context.Context, job *v1alpha1.Job, opts v1.UpdateOpti
 		Name(job.Name).
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(job).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -147,7 +147,7 @@ func (c *jobs) UpdateStatus(ctx context.Context, job *v1alpha1.Job, opts v1.Upda
 		SubResource("status").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(job).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -159,7 +159,7 @@ func (c *jobs) Delete(ctx context.Context, name string, opts v1.DeleteOptions) e
 		Resource("jobs").
 		Name(name).
 		Body(&opts).
-		Do(ctx).
+		Do().
 		Error()
 }
 
@@ -175,7 +175,7 @@ func (c *jobs) DeleteCollection(ctx context.Context, opts v1.DeleteOptions, list
 		VersionedParams(&listOpts, scheme.ParameterCodec).
 		Timeout(timeout).
 		Body(&opts).
-		Do(ctx).
+		Do().
 		Error()
 }
 
@@ -189,7 +189,7 @@ func (c *jobs) Patch(ctx context.Context, name string, pt types.PatchType, data 
 		SubResource(subresources...).
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(data).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
