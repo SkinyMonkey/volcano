@@ -71,7 +71,7 @@ func (c *commands) Get(ctx context.Context, name string, options v1.GetOptions) 
 		Resource("commands").
 		Name(name).
 		VersionedParams(&options, scheme.ParameterCodec).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -88,7 +88,7 @@ func (c *commands) List(ctx context.Context, opts v1.ListOptions) (result *v1alp
 		Resource("commands").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -116,7 +116,7 @@ func (c *commands) Create(ctx context.Context, command *v1alpha1.Command, opts v
 		Resource("commands").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(command).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -130,7 +130,7 @@ func (c *commands) Update(ctx context.Context, command *v1alpha1.Command, opts v
 		Name(command.Name).
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(command).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -142,7 +142,7 @@ func (c *commands) Delete(ctx context.Context, name string, opts v1.DeleteOption
 		Resource("commands").
 		Name(name).
 		Body(&opts).
-		Do(ctx).
+		Do().
 		Error()
 }
 
@@ -158,7 +158,7 @@ func (c *commands) DeleteCollection(ctx context.Context, opts v1.DeleteOptions, 
 		VersionedParams(&listOpts, scheme.ParameterCodec).
 		Timeout(timeout).
 		Body(&opts).
-		Do(ctx).
+		Do().
 		Error()
 }
 
@@ -172,7 +172,7 @@ func (c *commands) Patch(ctx context.Context, name string, pt types.PatchType, d
 		SubResource(subresources...).
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(data).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }

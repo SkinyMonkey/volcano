@@ -72,7 +72,7 @@ func (c *podGroups) Get(ctx context.Context, name string, options v1.GetOptions)
 		Resource("podgroups").
 		Name(name).
 		VersionedParams(&options, scheme.ParameterCodec).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -89,7 +89,7 @@ func (c *podGroups) List(ctx context.Context, opts v1.ListOptions) (result *v1be
 		Resource("podgroups").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -117,7 +117,7 @@ func (c *podGroups) Create(ctx context.Context, podGroup *v1beta1.PodGroup, opts
 		Resource("podgroups").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(podGroup).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -131,7 +131,7 @@ func (c *podGroups) Update(ctx context.Context, podGroup *v1beta1.PodGroup, opts
 		Name(podGroup.Name).
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(podGroup).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -147,7 +147,7 @@ func (c *podGroups) UpdateStatus(ctx context.Context, podGroup *v1beta1.PodGroup
 		SubResource("status").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(podGroup).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -159,7 +159,7 @@ func (c *podGroups) Delete(ctx context.Context, name string, opts v1.DeleteOptio
 		Resource("podgroups").
 		Name(name).
 		Body(&opts).
-		Do(ctx).
+		Do().
 		Error()
 }
 
@@ -175,7 +175,7 @@ func (c *podGroups) DeleteCollection(ctx context.Context, opts v1.DeleteOptions,
 		VersionedParams(&listOpts, scheme.ParameterCodec).
 		Timeout(timeout).
 		Body(&opts).
-		Do(ctx).
+		Do().
 		Error()
 }
 
@@ -189,7 +189,7 @@ func (c *podGroups) Patch(ctx context.Context, name string, pt types.PatchType, 
 		SubResource(subresources...).
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(data).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }

@@ -69,7 +69,7 @@ func (c *queues) Get(ctx context.Context, name string, options v1.GetOptions) (r
 		Resource("queues").
 		Name(name).
 		VersionedParams(&options, scheme.ParameterCodec).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -85,7 +85,7 @@ func (c *queues) List(ctx context.Context, opts v1.ListOptions) (result *v1beta1
 		Resource("queues").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Timeout(timeout).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -111,7 +111,7 @@ func (c *queues) Create(ctx context.Context, queue *v1beta1.Queue, opts v1.Creat
 		Resource("queues").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(queue).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -124,7 +124,7 @@ func (c *queues) Update(ctx context.Context, queue *v1beta1.Queue, opts v1.Updat
 		Name(queue.Name).
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(queue).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -139,7 +139,7 @@ func (c *queues) UpdateStatus(ctx context.Context, queue *v1beta1.Queue, opts v1
 		SubResource("status").
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(queue).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
@@ -150,7 +150,7 @@ func (c *queues) Delete(ctx context.Context, name string, opts v1.DeleteOptions)
 		Resource("queues").
 		Name(name).
 		Body(&opts).
-		Do(ctx).
+		Do().
 		Error()
 }
 
@@ -165,7 +165,7 @@ func (c *queues) DeleteCollection(ctx context.Context, opts v1.DeleteOptions, li
 		VersionedParams(&listOpts, scheme.ParameterCodec).
 		Timeout(timeout).
 		Body(&opts).
-		Do(ctx).
+		Do().
 		Error()
 }
 
@@ -178,7 +178,7 @@ func (c *queues) Patch(ctx context.Context, name string, pt types.PatchType, dat
 		SubResource(subresources...).
 		VersionedParams(&opts, scheme.ParameterCodec).
 		Body(data).
-		Do(ctx).
+		Do().
 		Into(result)
 	return
 }
